@@ -11,10 +11,10 @@
 {{! changing the mustache delimiter so it doesn't conflict with  }}
 {{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
 {{=<% %>=}}
-    <input type="text" placeholder="Type a string to reverse"/>
-    <input type="button" ng-click="reverseString()" value="Enter"/>
+    <input type="text" placeholder="Type a string to reverse" ng-model="stringToReverse"/>
+    <input type="button" ng-click="reverseString(stringToReverse)" value="Enter"/>
 
     <h2>Reversed String: </h2>
-    <span ng-bind="reversedString"></span>
+    <span ng-bind="myStringItem.reversedText"></span>
 </body>
 </html>

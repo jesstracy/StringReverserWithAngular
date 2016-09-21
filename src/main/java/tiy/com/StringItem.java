@@ -18,11 +18,15 @@ public class StringItem {
     @Column(nullable = false)
     String text;
 
+    @Column(nullable = false)
+    String reversedText;
+
     public StringItem() {
     }
 
-    public StringItem(String text) {
+    public StringItem(String text, String reversedText) {
         this.text = text;
+        this.reversedText = reversedText;
     }
 
     public int getId() {
@@ -47,5 +51,13 @@ public class StringItem {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getReversedText() {
+        return reversedText;
+    }
+
+    public void setReversedText(String reversedText) {
+        this.reversedText = reversedText;
     }
 }
