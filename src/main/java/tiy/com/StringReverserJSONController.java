@@ -1,5 +1,6 @@
 package tiy.com;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,11 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class StringReverserJSONController {
+    @Autowired
+    StringItemRepository stringItems;
+
     @RequestMapping(path = "/string-item.json", method = RequestMethod.GET)
     public StringItem getStringItemJson(String stringToReverse) {
         String reversedString = reverseString(stringToReverse);
         StringItem myStringItem = new StringItem(stringToReverse, reversedString);
-
+        stringItems.save(myStringItem);
 
         return myStringItem;
     }
