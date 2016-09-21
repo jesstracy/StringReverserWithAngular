@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 /**
  * Created by jessicatracy on 9/21/16.
  */
@@ -13,13 +15,32 @@ public class StringReverserJSONController {
     @Autowired
     StringItemRepository stringItems;
 
-    @RequestMapping(path = "/string-item.json", method = RequestMethod.GET)
-    public StringItem getStringItemJson(String stringToReverse) {
+//    @RequestMapping(path = "/string-item.json", method = RequestMethod.GET)
+//    public StringItem getStringItemJson(String stringToReverse) {
+//        String reversedString = reverseString(stringToReverse);
+//        StringItem myStringItem = new StringItem(stringToReverse, reversedString);
+//        stringItems.save(myStringItem);
+//
+//        return myStringItem;
+//    }
+
+    @RequestMapping(path = "/reverse.json", method = RequestMethod.GET)
+    public ArrayList<StringItem> getStringItemJson(String stringToReverse) {
         String reversedString = reverseString(stringToReverse);
         StringItem myStringItem = new StringItem(stringToReverse, reversedString);
         stringItems.save(myStringItem);
 
-        return myStringItem;
+        return getAllStringItems();
+    }
+
+    @RequestMapping(path = "/getAllStringItems.json", method = RequestMethod.GET)
+    public ArrayList<StringItem> getAllStringItems() {
+        Iterable<StringItem> allStringItems = stringItems.findAll();
+        ArrayList<StringItem> listOfStringItems = new ArrayList<>();
+        for (StringItem item : allStringItems) {
+            listOfStringItems.add(item);
+        }
+        return listOfStringItems;
     }
 
     public String reverseString(String stringToReverse) {
@@ -32,4 +53,6 @@ public class StringReverserJSONController {
 
         return reversedString;
     }
+
+
 }
