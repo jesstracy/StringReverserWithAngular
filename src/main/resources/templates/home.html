@@ -13,12 +13,13 @@
 {{! the default angularjs delimeters - https://mustache.github.io/mustache.5.html for more info  }}
 {{=<% %>=}}
     <input type="text" placeholder="Type a string to reverse" ng-model="stringToReverse"/>
-    <input type="button" ng-click="reverseString(stringToReverse)" value="Enter"/>
+    <input type="button" ng-click="reverseSingleString(stringToReverse)" value="Enter"/>
 
     <h2>Reversed String: </h2>
-    <!--<span ng-bind="myStringItem.reversedText"></span>-->
+    <span ng-bind="myStringItem.reversedText"></span>
 
-    <h3>All reversed strings: </h3>
+    <h3>Click to show all reversed strings: </h3>
+    <input type="button" ng-click="getAllStringItems()" value="Send"/>
     <ul>
         <li ng-repeat="stringitem in stringItems">
             {{stringitem.text}}: {{stringitem.reversedText}}

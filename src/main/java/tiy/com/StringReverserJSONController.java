@@ -15,20 +15,18 @@ public class StringReverserJSONController {
     @Autowired
     StringItemRepository stringItems;
 
-//    @RequestMapping(path = "/string-item.json", method = RequestMethod.GET)
-//    public StringItem getStringItemJson(String stringToReverse) {
-//        String reversedString = reverseString(stringToReverse);
-//        StringItem myStringItem = new StringItem(stringToReverse, reversedString);
-//        stringItems.save(myStringItem);
-//
-//        return myStringItem;
-//    }
-
-    @RequestMapping(path = "/reverse.json", method = RequestMethod.GET)
-    public ArrayList<StringItem> getStringItemJson(String stringToReverse) {
+    @RequestMapping(path = "/string-item.json", method = RequestMethod.GET)
+    public StringItem getStringItemJson(String stringToReverse) {
         String reversedString = reverseString(stringToReverse);
         StringItem myStringItem = new StringItem(stringToReverse, reversedString);
         stringItems.save(myStringItem);
+
+        return myStringItem;
+    }
+
+    @RequestMapping(path = "/reverse.json", method = RequestMethod.GET)
+    public ArrayList<StringItem> reverseAndListAllJson(String stringToReverse) {
+        getStringItemJson(stringToReverse);
 
         return getAllStringItems();
     }
